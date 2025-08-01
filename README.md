@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>📕 arXiv Daily: Paper Fetching & Translation</h1>
+  <h1>📕 arXiv Daily: Paper Scraping & Translation</h1>
   <div>
     <a >English</a> | 
     <a href="https://github.com/Kamio-Misuzu/arxiv_daily_ts/blob/main/%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E.md">简体中文</a> 
