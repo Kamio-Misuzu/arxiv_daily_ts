@@ -35,3 +35,7 @@
 <div align="center">
 <img width="294" height="164" alt="image" src="https://github.com/user-attachments/assets/f840a57e-8ca6-41c8-9ad6-d5ce59878579" />
 </div>
+
+### AI Usage Statement
+- Use the pyqt UI code provided by DeepSeek.
+
