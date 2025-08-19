@@ -1,3 +1,4 @@
+# API接口文档: https://docs.60s-api.viki.moe/254700383e0
 import requests
 import json
 
@@ -22,7 +23,8 @@ def viki_translate_text(text, from_lang="auto", to_lang="auto",encoding=None):
 
 
 if __name__ == "__main__":
-    result = viki_translate_text("神尾观铃")
+    result = viki_translate_text("Kamio-Misuzu")
     if result:
         # print(json.dumps(result, ensure_ascii=False, indent=2))
+
         print(result)
