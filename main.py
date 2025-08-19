@@ -11,6 +11,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QH
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QFont, QIcon, QPixmap, QColor
 from siliconflow_ai import siliconflow_ts
+from viki import viki_translate_text
+
 
 class ArxivFetcher(QThread):
     progress_updated = pyqtSignal(int, str)
@@ -172,6 +174,22 @@ class TranslationThread(QThread):
                     api_key=self.api_key,
                     model_id=self.model_id
                 )
+            except Exception as e:
+                translation = f"[翻译错误]\n\n错误信息: {str(e)}\n\n原始文本:\n{self.text}"
+        elif self.method == "有道翻译":
+            self.progress_updated.emit(30, "正在处理文本...")
+            self.progress_updated.emit(60, f"正在使用 {self.method} 翻译成 {self.target_lang}...")
+            try:
+                lang_code_map = {
+                    "中文": "zh-CHS",
+                    # "英文": "en",
+                    "日文": "ja",
+                    "中文繁体": "zh-CHT",
+                }
+                to_lang_code = lang_code_map.get(self.target_lang, "zh")
+
+                # 调用有道翻译函数
+                translation = viki_translate_text(self.text, to_lang=to_lang_code)
             except Exception as e:
                 translation = f"[翻译错误]\n\n错误信息: {str(e)}\n\n原始文本:\n{self.text}"
         else:
@@ -370,7 +388,7 @@ class ArxivBrowser(QMainWindow):
         lang_layout = QHBoxLayout()
         lang_label = QLabel("目标语言:")
         self.lang_combo = QComboBox()
-        self.lang_combo.addItems(["中文"])
+        self.lang_combo.addItems(["中文", "日文","中文繁体"])
         self.lang_combo.setCurrentIndex(0)
         lang_layout.addWidget(lang_label)
         lang_layout.addWidget(self.lang_combo)
@@ -380,7 +398,7 @@ class ArxivBrowser(QMainWindow):
         method_layout = QHBoxLayout()
         method_label = QLabel("翻译方式:")
         self.method_combo = QComboBox()
-        self.method_combo.addItems(["DeepL翻译", "硅基流动API"])
+        self.method_combo.addItems(["有道翻译", "硅基流动API"])
         self.method_combo.setCurrentIndex(0)
         self.method_combo.currentIndexChanged.connect(self.toggle_api_settings)
         method_layout.addWidget(method_label)
@@ -1040,8 +1058,8 @@ class ArxivBrowser(QMainWindow):
         </ul>
         <p>翻译功能支持：</p>
         <ul>
-            <li>目标语言：中文</li>
-            <li>翻译方式：DeepL翻译, 硅基流动API</li>
+            <li>目标语言：中文简体, 日文, 中文繁体</li>
+            <li>翻译方式：有道翻译, 硅基流动API</li>
         </ul>
         """
         QMessageBox.about(self, "关于 arXiv论文摘要速览", about_text)

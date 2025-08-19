@@ -5,10 +5,12 @@ import json
 def siliconflow_ts(text, target_lang, api_key, model_id):
     API_URL = "https://api.siliconflow.cn/v1/chat/completions"
 
-    # 构造语言映射表
     lang_prompts = {
         "中文": "请将以下内容翻译成专业、流畅、自然的中文：",
+        "中文繁体": "请将以下内容翻译成专业、流畅、自然的繁体中文：",
+        "日文": "请将以下内容翻译成专业、流畅、自然的日语：",
     }
+
     prompt = lang_prompts.get(target_lang, lang_prompts["中文"])
 
     full_prompt = f"{prompt}\n\n{text}"
