@@ -10,6 +10,9 @@
   </p>
 </div>
 
+### Timeline
+- 8.20 Use the '60s API' to add Youdao translation, include Traditional Chinese and Japanese translation languages, and other languages can be added or removed in the main.py file as needed.
+
 
 ### Main Interface
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/5b68158c-0c63-4ee4-861d-50bd19cfb5ce" />
