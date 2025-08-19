@@ -47,7 +47,7 @@ class ArxivFetcher(QThread):
             papers = []
 
             self.progress_updated.emit(30, "解析论文数据...")
-            time.sleep(0.5)  # 模拟延迟
+            time.sleep(0.5)
 
             for i, dt in enumerate(dt_tags):
                 abstract_link = dt.find('a', title="Abstract")
@@ -187,8 +187,6 @@ class TranslationThread(QThread):
                     "中文繁体": "zh-CHT",
                 }
                 to_lang_code = lang_code_map.get(self.target_lang, "zh")
-
-                # 调用有道翻译函数
                 translation = viki_translate_text(self.text, to_lang=to_lang_code)
             except Exception as e:
                 translation = f"[翻译错误]\n\n错误信息: {str(e)}\n\n原始文本:\n{self.text}"
@@ -1076,4 +1074,5 @@ if __name__ == "__main__":
     browser = ArxivBrowser()
     browser.show()
     sys.exit(app.exec_())
+
 
