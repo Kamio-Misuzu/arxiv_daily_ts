@@ -640,7 +640,7 @@ class ArxivBrowser(QMainWindow):
         translation_title.setStyleSheet("font-weight: bold; color: #444; margin-bottom: 10px;")
         translation_result_layout.addWidget(translation_title)
 
-        # 翻译结果显示区域 - 现在更大
+        # 翻译结果显示区域
         self.translation_result = QTextEdit()
         self.translation_result.setReadOnly(True)
         self.translation_result.setStyleSheet("""
@@ -1076,3 +1076,4 @@ if __name__ == "__main__":
     browser = ArxivBrowser()
     browser.show()
     sys.exit(app.exec_())
+
